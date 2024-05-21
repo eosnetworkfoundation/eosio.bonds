@@ -34,6 +34,29 @@
 
 - **Liquidity risk**: The bonds are transferable, but there may not be a liquid secondary market for the bonds. This may result in difficulty selling the bonds at a fair price.
 
+## Definitions and Assumptions
+- **Total Deposits (𝐷)**: The cumulative amount of funds deposited.
+- **Number of Bills Issued (𝑁)**: The total number of bills issued before the current purchase.
+- **Order of the Bill (𝑛)**: The order of the current bill being purchased (1st, 2nd, ..., 𝑛).
+- **Face Value (𝐹)**: The nominal value of the Treasury bill.
+- **Discount Rate ($𝑟_𝑛$)**: The discount rate for the 𝑛-th bill, which increases as more bills are issued.
+- **Price of Bill (𝑃𝑛)**: The price at which the Treasury bill is sold.
+
+## Sliding Discount Rate Formula
+
+To make the discount rate increase with each additional bill issued, we can use a function that depends on the number of bills issued. For simplicity, we can use a linear function of the form:
+
+$$ 𝑟_𝑛 = \frac{𝐷}{(𝑁+𝑛) ⋅ 𝐹 } $$
+
+where 𝑁 is the total number of bills issued before the current purchase and 𝑛 is the order of the current bill being purchased (1st, 2nd, ..., 𝑛).
+
+### Price Calculation for Multiple Bills
+
+To calculate the total price of buying multiple bills, we sum up the prices of each individual bill considering their respective discount rates.
+
+$$ 𝑃_𝑛 = 𝐹 ⋅ (1− 𝑟_𝑛) $$
+
+
 ## References
 
 - https://www.fidelity.com/fixed-income-bonds/individual-bonds/us-treasury-bonds
