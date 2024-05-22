@@ -34,27 +34,30 @@
 
 - **Liquidity risk**: The bonds are transferable, but there may not be a liquid secondary market for the bonds. This may result in difficulty selling the bonds at a fair price.
 
-## Definitions and Assumptions
-- **Total Deposits (𝐷)**: The cumulative amount of funds deposited.
-- **Number of Bills Issued (𝑁)**: The total number of bills issued before the current purchase.
-- **Order of the Bill (𝑛)**: The order of the current bill being purchased (1st, 2nd, ..., 𝑛).
-- **Face Value (𝐹)**: The nominal value of the Treasury bill.
-- **Discount Rate ($𝑟_𝑛$)**: The discount rate for the 𝑛-th bill, which increases as more bills are issued.
-- **Price of Bill (𝑃𝑛)**: The price at which the Treasury bill is sold.
-
 ## Sliding Discount Rate Formula
 
-To make the discount rate increase with each additional bill issued, we can use a function that depends on the number of bills issued. For simplicity, we can use a linear function of the form:
+This protocol calculates the discount rate and price of purchasing EOS bonds based on total deposits and the number of bonds purchased. The discount rate dynamically adjusts to ensure that deposits are not depleted.
 
-$$ 𝑟_𝑛 = \frac{𝐷}{(𝑁+𝑛) ⋅ 𝐹 } $$
+### Parameters
 
-where 𝑁 is the total number of bills issued before the current purchase and 𝑛 is the order of the current bill being purchased (1st, 2nd, ..., 𝑛).
+- **Total Deposits (𝐷)**: The cumulative amount of funds deposited into the protocol. This amount is adjusted whenever bonds are purchased, with the purchase price being subtracted from the total deposits.
+- **Fixed Number of Bonds (𝑁)**: The fixed number of bonds used for calculating the discount rate. In this protocol, 𝑁 is set to 10,000.
+- **Number of Bonds Purchased (k)**: The number of bonds currently being purchased.
+- **Discount Rate ($𝑟$)**: The discount rate applied to the bonds.
+
+$$ 𝑟 = \frac{𝐷}{(𝑁+k) ⋅ 𝑁 } $$
+
+### Price of Each Bill
+
+The price of each bill 𝑃 is calculated by subtracting the discount rate from 1:
+
+$$ P = 1 - 𝑟 $$
 
 ### Price Calculation for Multiple Bills
 
-To calculate the total price of buying multiple bills, we sum up the prices of each individual bill considering their respective discount rates.
+To calculate the total price of buying multiple bills, we use the following formula:
 
-$$ 𝑃_𝑛 = 𝐹 ⋅ (1− 𝑟_𝑛) $$
+$$ 𝑃_{total} = k ⋅ P = k ⋅ (1− \frac{𝐷}{(𝑁+k) ⋅ 𝑁 }) $$
 
 
 ## References
