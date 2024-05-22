@@ -59,6 +59,14 @@ To calculate the total price of buying multiple bills, we use the following form
 
 $$ 𝑃_{total} = k ⋅ P = k ⋅ (1− \frac{𝐷}{(𝑁+k) ⋅ 𝑁 }) $$
 
+```mermaid
+xychart-beta
+    title "Yield EOS Bonds (25M EOS/month)"
+    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+    y-axis "APY (in %)" 1 --> 8
+    bar [1.4286, 2.0717, 2.6690, 3.2235, 3.7385, 4.2167, 4.6607, 5.0730, 5.4558, 5.8113, 6.1414, 6.4480, 6.7326]
+    line [1.4286, 2.0717, 2.6690, 3.2235, 3.7385, 4.2167, 4.6607, 5.0730, 5.4558, 5.8113, 6.1414, 6.4480, 6.7326]
+```
 
 ## References
 
